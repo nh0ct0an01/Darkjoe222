@@ -147,8 +147,8 @@ app.post('/addnew' , (req , res)=>{
     
         return [day, month, year].join('-');
     }
-    if(req.body.txtNameKh &&  req.body.txtEmailKH && req.body.txtSDTKH  && req.body.txtCMND && req.body.ImageCMND1 &&  req.body.txtSDTKH&& req.body.txtSDTKH &&  req.body.txtSDTKH&&req.file.ImageCMND1
-       && req.body.txtHanMuc){
+    console.log(req.file);
+  
       up1(req, res, function (err) {
         if (err instanceof multer.MulterError) {
           console.log("A Multer error occurred when uploading." + err); 
@@ -231,10 +231,7 @@ app.post('/addnew' , (req , res)=>{
               }
            })    
 
-    }else{
-      console.log("cut di ba ey");
-      res.redirect("Khachhang");
-    }
+    
    
     })
 
