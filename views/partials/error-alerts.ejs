@@ -1,0 +1,120 @@
+    <% if (query.faillogin) {%>
+    <div class="alert alert-danger">
+      Oops! Sai mật khẩu hoặc tài khoản rồi
+    </div>
+    <% } %>
+    <% if (query.failsess) {%>
+        <div class="alert alert-danger">
+          Oops! Bạn cần đăng nhập
+        </div>
+    <% } %>
+        
+    <% if (query.failpasswordcor) {%>
+    <div class="alert alert-danger">
+      Mật khẩu không trùng!
+    </div>
+    <% } %>
+    
+    <% if (query.failmuc) {%>
+    <div class="alert alert-danger">
+      Bạn nhập thiếu 1 mục nào đó !
+    </div>
+    <% } %>
+    
+    <% if (query.failusernameexist) {%>
+    <div class="alert alert-danger">
+        Tài khoản đã tồn tại!
+    </div>
+    <% } %>
+    <% if (query.addsuccess) {%>
+      <div class="alert alert-success">
+      Nhập thành công!
+      </div>
+      <% } %>
+    <% if (query.failaddnew) {%>
+    <div class="alert alert-danger">
+      Nhập Thất Bại! Xin vui lòng xem lại
+    </div>
+    <% } %>
+    
+    <% if (query.failemailinvalid) {%>
+    <div class="alert alert-danger">
+      Invalid email address!
+    </div>
+    <% } %>
+    
+    <% if (query.failconfirmpass) {%>
+    <div class="alert alert-danger">
+      Confirm password must match!
+    </div>
+    <% } %>
+    
+    <% if (query.failweakpass) {%>
+    <div class="alert alert-danger">
+      Password must be at least 8 characters long,
+      contains at least one uppercase letter and at least one lower case letter,
+      contains at least one number.
+    </div>
+    <% } %>
+    
+    <% if (query.wrongpass) {%>
+    <div class="alert alert-danger">
+      Wrong password!
+    </div>
+    <% } %>
+    
+    <% if (query.wrongotp) {%>
+    <div class="alert alert-danger">
+      Wrong OTP!
+    </div>
+    <% } %>
+    
+    <% if (query.signupsuccess) {%>
+    <div class="alert alert-success">
+    Sign up succeeded, please check your email for verification link.
+    </div>
+    <% } %>
+    
+    <% if (query.buysuccess) {%>
+    <div class="alert alert-success">
+    Buy succeeded!
+    </div>
+    <% } %>
+    
+    <% if (query.notenoughmoney) {%>
+    <div class="alert alert-danger">
+    Not enough money!
+    </div>
+    <% } %>
+    
+    <% if (query.success) {%>
+    <div class="alert alert-success">
+    Succeeded!
+    </div>
+    <% } %>
+    
+    <% if (query.error) {%>
+    <div class="alert alert-danger">
+    Error!
+    </div>
+    <% } %>
+    
+    <% if (query.enablesuccess) {%>
+    <div class="alert alert-success">
+     Succeeded!
+    </div>
+    <% } %>
+    
+    <% if (query.notusername) {%>
+    <div class="alert alert-success">
+     Don't have username
+    </div>
+    <% } %>
+    
+    
+    <% if (query.verifySuccess) {%>
+    <div class="alert alert-success">
+     Verify successful, please login
+    </div>
+    <% } %>
+    
