@@ -2,11 +2,11 @@
 <html lang="en">
 
     <head>
-     
+        <base href="http://149.28.143.249/"/>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-        <title>Admin Page</title>
+        <title>Thẻ Khách Hàng</title>
         <meta content="Admin Dashboard" name="description" />
         <meta content="Themesbrand" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -34,49 +34,7 @@
         <div id="wrapper">
 
             <!-- ========== Left Sidebar Start ========== -->
-            <div class="left side-menu">
-
-                <!-- LOGO -->
-                <div class="topbar-left">
-                    <div class="">
-                        <!--<a href="index.html" class="logo text-center">Fonik</a>-->
-                        <a href="index.html" class="logo"><img src="/images/logo.png" height="20" alt="logo"></a>
-                    </div>
-                </div>
-
-                <div class="sidebar-inner slimscrollleft">
-                    <div id="sidebar-menu">
-                        <ul>
-
-                            <li class="menu-title">Menu</li>
-
-                            <li>
-                                <a href="./Admin" class="waves-effect"><i class="dripicons-device-desktop"></i><span> Trang chủ </span></a>
-                            </li>
-
-                          
-
-                       
-
-                            <li>
-                                <a href="./Khachhang" class="waves-effect"><i class="mdi mdi-account-multiple-outline"></i><span> Khách Hàng </span></a>
-                            </li>
-                            
-                            <li>
-                                <a href="#" class="waves-effect"><i class="mdi mdi-account-box"></i><span> Đổi Mật Khẩu</span></a>
-                            </li>
-                            <li>
-                                <a href="#" class="waves-effect"><i class="mdi mdi-logout"></i><span> Đăng xuất </span></a>
-                            </li>
-
-                          
-
-                           
-                        </ul>
-                    </div>
-                    <div class="clearfix"></div>
-                </div> <!-- end sidebarinner -->
-            </div>
+            <%- include ("./partials/sliderbar") %>
             <!-- Left Sidebar End -->
 
 
@@ -86,103 +44,7 @@
                 <div class="content">
 
                     <!-- Top Bar Start -->
-                    <div class="topbar">
-
-                        <nav class="navbar-custom">
-                            <!-- Search input -->
-                            <div class="search-wrap" id="search-wrap">
-                                <div class="search-bar">
-                                    <input class="search-input" type="search" placeholder="Search" />
-                                    <a href="#" class="close-search toggle-search" data-target="#search-wrap">
-                                        <i class="mdi mdi-close-circle"></i>
-                                    </a>
-                                </div>
-                            </div>
-
-                            <ul class="list-inline float-right mb-0">
-                                <!-- Search -->
-                                <li class="list-inline-item dropdown notification-list">
-                                    <a class="nav-link waves-effect toggle-search" href="#"  data-target="#search-wrap">
-                                        <i class="mdi mdi-magnify noti-icon"></i>
-                                    </a>
-                                </li>
-                                <!-- Fullscreen -->
-                                <li class="list-inline-item dropdown notification-list hidden-xs-down">
-                                    <a class="nav-link waves-effect" href="#" id="btn-fullscreen">
-                                        <i class="mdi mdi-fullscreen noti-icon"></i>
-                                    </a>
-                                </li>
-                                <!-- notification-->
-                                <li class="list-inline-item dropdown notification-list">
-                                    <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button"
-                                       aria-haspopup="false" aria-expanded="false">
-                                        <i class="ion-ios7-bell noti-icon"></i>
-                                        <span class="badge badge-danger noti-icon-badge">3</span>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-menu-lg">
-                                        <!-- item-->
-                                        <div class="dropdown-item noti-title">
-                                            <h5>Thông Báo (3)</h5>
-                                        </div>
-
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item notify-item active">
-                                            <div class="notify-icon bg-success"><i class="mdi mdi-cart-outline"></i></div>
-                                            <p class="notify-details"><b>Your order is placed</b><small class="text-muted">Dummy text of the printing and typesetting industry.</small></p>
-                                        </a>
-
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                            <div class="notify-icon bg-warning"><i class="mdi mdi-message"></i></div>
-                                            <p class="notify-details"><b>New Message received</b><small class="text-muted">You have 87 unread messages</small></p>
-                                        </a>
-
-                                        <!-- item-->
-                                        <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                            <div class="notify-icon bg-info"><i class="mdi mdi-martini"></i></div>
-                                            <p class="notify-details"><b>Your item is shipped</b><small class="text-muted">It is a long established fact that a reader will</small></p>
-                                        </a>
-
-                                        <!-- All-->
-                                        <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                            View All
-                                        </a>
-
-                                    </div>
-                                </li>
-                                <!-- User-->
-                                <li class="list-inline-item dropdown notification-list">
-                                    <a class="nav-link dropdown-toggle arrow-none waves-effect nav-user" data-toggle="dropdown" href="#" role="button"
-                                       aria-haspopup="false" aria-expanded="false">
-                                        <img src="/images/users/avatar-1.jpg" alt="user" class="rounded-circle">
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
-                                        <a class="dropdown-item" href="#"><i class="dripicons-user text-muted"></i> Thông Tin Cá Nhân</a>
-                                       
-                                        <a class="dropdown-item" href="#"><span class="badge badge-success float-right m-t-5">5</span><i class="dripicons-gear text-muted"></i> Settings</a>
-                                        <a class="dropdown-item" href="#"><i class="dripicons-lock text-muted"></i> Lock screen</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="./Logout"><i class="dripicons-exit text-muted"></i> Logout</a>
-                                    </div>
-                                </li>
-                            </ul>
-
-                            <!-- Page title -->
-                            <ul class="list-inline menu-left mb-0">
-                                <li class="list-inline-item">
-                                    <button type="button" class="button-menu-mobile open-left waves-effect">
-                                        <i class="ion-navicon"></i>
-                                    </button>
-                                </li>
-                                <li class="hide-phone list-inline-item app-search">
-                                    <h3 class="page-title">Trang Chủ</h3>
-                                </li>
-                            </ul>
-
-                            <div class="clearfix"></div>
-                        </nav>
-
-                    </div>
+                    <%- include ("./partials/nav") %>
                     <!-- Top Bar End -->
 
                         <!-- ==================
@@ -238,7 +100,7 @@
                                     <div class="col-12">
                                         <div class="card m-b-20">
                                             <div class="card-body">
-                
+                                                <%- include ("./partials/error-alerts") %>
                                                 <h4 class="mt-0 header-title">Thêm Thẻ</h4>
                                                 <p class="text-muted m-b-30 font-14"></p>
                                             <form class="form-horizontal m-t-30" action="./Card" method="POST">   
@@ -267,13 +129,13 @@
                                                 <div class="form-group row">
                                                     <label for="example-date-input" class="col-sm-2 col-form-label">Ngày Chốt Sao Kê</label>
                                                     <div class="col-sm-10">
-                                                        <input class="form-control" type="date" name="txtDateSK"  value="2021-02-19" id="example-date-input">
+                                                        <input class="form-control" type="number" name="txtDateSK"   id="example-date-input">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label for="example-date-input" class="col-sm-2 col-form-label">Ngày Thanh Toán</label>
                                                     <div class="col-sm-10">
-                                                        <input class="form-control" type="date" name="txtDateTT"  value="2021-03-19" id="example-date-input">
+                                                        <input class="form-control" type="number" name="txtDateTT"  id="example-date-input">
                                                     </div>
                                                 </div>
                                                 
@@ -281,6 +143,12 @@
                                                     <label for="example-number-input" class="col-sm-2 col-form-label">Hạn Mức Thẻ</label>
                                                     <div class="col-sm-10">
                                                         <input class="form-control" type="number" min=1000000 name="txtHanMuc" value = 50000000   id="example-number-input">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="example-tel-input" class="col-sm-2 col-form-label">Tải lên Ảnh Thẻ: </label>
+                                                    <div class="col-sm-10">
+                                                        <input class="form-control" type="file"  accept='image/*' name="cmndimage" id ="cmnd2" >
                                                     </div>
                                                 </div>
                                               

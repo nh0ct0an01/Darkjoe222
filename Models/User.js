@@ -4,6 +4,7 @@ var bcrypt = require('bcrypt');
 var UserSchema = mongoose.Schema({
     username: {type: String, required: true},
     password: {type : String, required:true},
+    Khachhang: [{type:mongoose.Schema.Types.ObjectId}],
 });
 
 //authenticate input against database
