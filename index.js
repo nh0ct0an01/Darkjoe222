@@ -435,7 +435,7 @@ app.post('/Dangky',(function (req, res, next){
         req.body.Passwordror) {
         async.parallel([
             function(callback) {
-              User.findOne({username: req.body.txtusername}, "usename", function(err, user) {
+              User.findOne({username: req.body.txtusername}, "username", function(err, user) {
                 if (!err && user) callback(null, true);
                 else callback(null, false);
               });
@@ -466,7 +466,7 @@ app.post('/Dangky',(function (req, res, next){
           username: req.body.txtusername,
           
           password: passwordcrypt,
-          Khachhang:{},
+          Khachhang:[],
         }
         
         //use schema.create to insert data into the db
@@ -475,7 +475,7 @@ app.post('/Dangky',(function (req, res, next){
             return next(err)
           } else {
             
-            return res.redirect('/Login');
+            return res.redirect('/Login?signupsuccess=1');
           }
         });
       } 
