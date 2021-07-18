@@ -9,6 +9,7 @@ var schemaDSCard = new mongoose.Schema({
     DateTT: String,
     HanMuc: Number,
     DateTan: String,
+    ImageCard: String,
    
 });
 

@@ -34,7 +34,7 @@ var storage = multer.diskStorage({
 });  
 var storage2 = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'public/upload')
+    cb(null, 'public/Card')
   },
   filename: function (req, file, cb) {
     cb(null, Date.now()  + "-" + file.originalname)
@@ -67,7 +67,7 @@ var upload2 = multer({
 });
 
 var up1 = upload.fields([{ name: 'ImageCMND1', maxCount: 1 }, { name: 'ImageCMND2', maxCount: 1 }]);
-var up2 = upload2.single("cmndimage");
+var up2 = upload2.single("Cardimage");
 
 //Connect Mongo
 const mongoose = require('mongoose');
@@ -211,9 +211,34 @@ app.get('/Khachhang' ,requiresLogin, (req , res, next)=>{
         })
     });
  
-
- 
-
+app.get('/Editkhachhang/:id' ,requiresLogin, (req , res)=>{
+      // current timestamp in milliseconds
+      
+    
+      DSKH.findById(req.params.id,function(err, data){
+        if(err){
+            console.log(err);
+        }else{
+            console.log(data);
+            res.render("Editkhachhang",{ danhsachKH:data,query: req.query})
+        }
+    });
+     
+      })
+app.get('/DeleteKH/:id' ,requiresLogin, (req , res)=>{
+        // current timestamp in milliseconds
+        
+      
+        DSKH.deleteOne({_id:req.params.id},function(err){
+          if(err){
+              console.log(err);
+          }else{
+             
+              res.redirect("/Khachhang");
+          }
+      });
+       
+        })
 
 
 // Thong tin the
@@ -243,6 +268,8 @@ app.get('/Card/:id' ,requiresLogin, (req , res)=>{
       })
  
   })
+ 
+ 
  //Dao han
 app.get('/DaoHan' , requiresLogin, (req , res)=>{
   DSKH.find(function(err, data){
@@ -280,75 +307,63 @@ app.post('/addnew' , (req , res)=>{
       up1(req, res, function (err) {
         if (err instanceof multer.MulterError) {
           console.log("A Multer error occurred when uploading." + err); 
-           console.log(req.file);
+        
         } else if (err) {
           console.log("An unknown error occurred when uploading." + err);
         }else{
             console.log("Upload is okay");
+            console.log(req.files);
+            if (req.files['ImageCMND1']&&req.files['ImageCMND2']){
+             
          
-          
-            if(req.body.txtNameKh &&
-              req.body.txtEmailKH &&
-              req.body.txtSDTKH&&
-              req.body.txtCMND&&
-              req.body.txtBankName&&
-              req.body.txtSTKH&&
-              req.body.txtDateSK&&
-              req.body.txtHanMuc
-           ){     
-            var dskh =DSKH({
-                
-            NameKh: req.body.txtNameKh,
-            EmailKH: req.body.txtEmailKH,
-            SDTKH: req.body.txtSDTKH,
-            SCMND: req.body.txtCMND,
-            CMNDimage1:  req.body.txtCMND,
-          
-            Card: [],
+              if(req.body.txtNameKh &&
+             
+                req.body.txtSDTKH&&
+                req.body.txtCMND
+               
+             ){     
+              var dskh =DSKH({
+                  
+              NameKh: req.body.txtNameKh,
             
-        });
-        
-        var dscard =DSThe({            
-            BankName:  req.body.txtBankName,
-            STKH: req.body.txtSTKH,
-            DateSK: req.body.txtDateSK,
-            DateTT: req.body.txtDateTT,
-            HanMuc: req.body.txtHanMuc,
-            DateTan: formatDatez(req.body.txtDateSK,req.body.txtDateTT),
-            });
-            console.log(formatDatez(req.body.txtDateSK,req.body.txtDateTT));
-            dscard.save(function(err){});
-            
-            dskh.save(function(err,data){
-              if(err){
-                console.log(err)
-              }else{
-
-                  console.log("ok baby")
-                  User.findOneAndUpdate({_id:req.session.userId}, {$push: {Khachhang:data._id}},function(err, datas){
-                    if(err){
-                        console.log("chen the an cut roi")
-                        res.redirect("Khachhang?failaddnew=1");
-                    }else{
-                      DSKH.findOneAndUpdate({_id:data._id}, {$push: {Card:dscard._id}},function(err, dataz){
-                        if(err){
-                            console.log("chen the an cut roi")
-                            res.redirect("Khachhang?failaddnew=1");
-                        }else{
+              SDTKH: req.body.txtSDTKH,
+              SCMND: req.body.txtCMND,
+              CMNDimage1:  req.files['ImageCMND1'][0].filename,
+              CMNDimage2:  req.files['ImageCMND2'][0].filename,
+              Card: [],
+              
+          });
+          
+       
+              
+              dskh.save(function(err,data){
+                if(err){
+                  console.log(err)
+                }else{
+  
+                    console.log("ok baby")
+                    User.findOneAndUpdate({_id:req.session.userId}, {$push: {Khachhang:data._id}},function(err, datas){
+                      if(err){
+                          console.log("chen the an cut roi")
+                          res.redirect("Khachhang?failaddnew=1");
+                      }else{                   
+                              res.redirect("Khachhang?addsuccess=1");
+                    
                           
-                            res.redirect("Khachhang?addsuccess=1");
-                        }
+                      }
                     })
-                        
-                    }
-                  })
-                 
-              }
-          })}
-          else{
-            console.log("thieu 1 muc");
-            res.redirect('/Khachhang?failmuc=1');
-             }               
+                   
+                }
+            })}
+            else{
+              console.log("thieu 1 muc");
+              res.redirect('/Khachhang?failmuc=1');
+               } 
+            }else{
+              console.log("thieu upload the")
+              res.redirect('/Khachhang?failupload1=1');
+            }
+                       
               }
            })    
    
@@ -374,38 +389,42 @@ app.post('/Card' , (req , res)=>{
       console.log("An unknown error occurred when uploading." + err);
     }else{
         console.log("Upload is okay");
-        console.log(req.body.txtBankName); // Thông tin file đã upload
-        if(req.body.txtBankName &&
-          req.body.txtSTKH &&
-          req.body.txtDateSK&&
-          req.body.txtDateTT&&
-          req.body.txtHanMuc
-        ){
-          var dscard =DSThe({            
-          BankName:  req.body.txtBankName,
-          STKH: req.body.txtSTKH,
-          DateSK: req.body.txtDateSK,
-          DateTT: req.body.txtDateTT,
-          HanMuc: req.body.txtHanMuc,
-          DateTan: formatDatez(req.body.txtDateSK,req.body.txtDateTT),
-      });
-          dscard.save(function(err){
-            if(err){
-                console.log("luu the an cut roi")
+        
+        if (req.file){
+          if(req.body.txtBankName &&
+            req.body.txtSTKH &&
+            req.body.txtDateSK&&
+            req.body.txtDateTT&&
+            req.body.txtHanMuc
+          ){
+            var dscard =DSThe({            
+            BankName:  req.body.txtBankName,
+            STKH: req.body.txtSTKH,
+            DateSK: req.body.txtDateSK,
+            DateTT: req.body.txtDateTT,
+            HanMuc: req.body.txtHanMuc,
+            DateTan: formatDatez(req.body.txtDateSK,req.body.txtDateTT),
+            ImageCard: req.file.filename,
+        });
+            dscard.save(function(err){
+              if(err){
+                  console.log("luu the an cut roi")
+              }else{
+                  DSKH.findOneAndUpdate({_id:req.body.slcID}, {$push: {Card:dscard._id}},function(err, data){
+                      if(err){
+                          console.log("chen the an cut roi")
+                      }else{
+                          res.redirect('/Card/'+req.body.slcID+'?addsuccess=10');
+                      }
+                  })
+              }
+          })     
             }else{
-                DSKH.findOneAndUpdate({_id:req.body.slcID}, {$push: {Card:dscard._id}},function(err, data){
-                    if(err){
-                        console.log("chen the an cut roi")
-                    }else{
-                        res.redirect('/Card/'+req.body.slcID+'?addsuccess=10');
-                    }
-                })
+              res.redirect('/Card/'+ req.body.slcID+'?failmuc=20');
+           
             }
-        })     
-          }else{
-            res.redirect('/Card/'+ req.body.slcID+'?failmuc=20');
-         
-          }
+        } else{res.redirect('/Card/'+req.body.slcID+'?failimagecard=1');}
+     
     }
 
 });

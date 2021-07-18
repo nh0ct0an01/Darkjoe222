@@ -73,7 +73,7 @@
                                                     <th>Ngày Chốt Sao Kê</th>
                                                     <th>Hạn chót Thanh Toán</th>
                                                     <th>Hạn mức</th>
-                                                   
+                                                    
                                                 </tr>
                                                 </thead>
             
@@ -86,7 +86,8 @@
                                                     <td><%- dskh.DateSK   %></td>
                                                     <td> <%- dskh.DateTan   %></td>
                                                     <td> <%- dskh.HanMuc   %></td>
-                                                  
+                                                    
+                                                    
                                                     <%}); %>
                                                   
                                                 </tr>
@@ -105,7 +106,7 @@
                                                 <%- include ("./partials/error-alerts") %>
                                                 <h4 class="mt-0 header-title">Thêm Thẻ</h4>
                                                 <p class="text-muted m-b-30 font-14"></p>
-                                            <form class="form-horizontal m-t-30" action="./Card" method="POST">   
+                                            <form class="form-horizontal m-t-30" action="./Card" method="POST" enctype="multipart/form-data">   
                                                 <div class="form-group row">
                                                     <label for="example-text-input" class="col-sm-2 col-form-label">Tên Ngân Hàng</label>
                                                     <div class="col-sm-10">
@@ -148,9 +149,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="example-tel-input" class="col-sm-2 col-form-label">Tải lên Ảnh Thẻ: </label>
+                                                    <label for="example-tel-input" class="col-sm-2 col-form-label">Tải Lên Ảnh Thẻ: </label>
                                                     <div class="col-sm-10">
-                                                        <input class="form-control" type="file"  accept='image/*' name="cmndimage" id ="cmnd2" >
+                                                        <input class="form-control" type="file"  accept='image/*' name="Cardimage" id ="cardimg" >
                                                     </div>
                                                 </div>
                                               
